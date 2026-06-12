@@ -6,10 +6,12 @@ import {
   Dog,
   Heart,
   Home,
+  Palette,
   Scissors,
   ShieldCheck,
   Sparkles,
   Star,
+  Waves,
 } from 'lucide-react';
 
 const images = {
@@ -21,6 +23,9 @@ const images = {
   brush: 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=900&q=80',
   studio: 'https://images.unsplash.com/photo-1601758124510-52d02ddb7cbd?auto=format&fit=crop&w=900&q=80',
   towel: 'https://images.unsplash.com/photo-1583512603805-3cc6b41f3edb?auto=format&fit=crop&w=900&q=80',
+  portrait: 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=900&q=80',
+  coat: 'https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&w=900&q=80',
+  smallPet: 'https://images.unsplash.com/photo-1425082661705-1834bfd09dca?auto=format&fit=crop&w=900&q=80',
 };
 
 export const serviceHighlights = [
@@ -219,6 +224,56 @@ export const services = [
     icon: Home,
     image: images.studio,
     alt: 'Clean pet care products for a grooming business',
+  },
+  {
+    title: 'Breed Style Consultation',
+    description: 'A demo consultation card for discussing coat goals, lifestyle, and breed-aware styling.',
+    bestFor: 'Breed styles and custom trims',
+    duration: '10-20 minutes',
+    price: 'Demo add-on',
+    icon: Palette,
+    image: images.portrait,
+    alt: 'Happy dog portrait for breed style grooming consultation',
+  },
+  {
+    title: 'Mat Care & Coat Reset',
+    description: 'General, non-medical wording for careful coat reset conversations and grooming policy notes.',
+    bestFor: 'Tangled coats and coat reset plans',
+    duration: 'Varies by coat',
+    price: 'Custom quote',
+    icon: Brush,
+    image: images.coat,
+    alt: 'Clean dog coat detail for coat reset grooming copy',
+  },
+  {
+    title: 'Coat Conditioning Treatment',
+    description: 'Soft, premium add-on copy for a smoother-feeling coat after bath and brush services.',
+    bestFor: 'Dry coats and premium bath menus',
+    duration: 'Add 15-30 minutes',
+    price: 'From $20',
+    icon: Waves,
+    image: images.bath,
+    alt: 'Gentle bath care for a coat conditioning grooming add-on',
+  },
+  {
+    title: 'Small Pet Tidy Service',
+    description: 'A flexible demo card for businesses that want to mention small pet grooming inquiries.',
+    bestFor: 'Small pets by business policy',
+    duration: 'Policy dependent',
+    price: 'Ask salon',
+    icon: Heart,
+    image: images.smallPet,
+    alt: 'Small pet portrait for a small pet grooming inquiry service',
+  },
+  {
+    title: 'Photo-Ready Finish',
+    description: 'A cute finishing service card for bows, bandanas, fresh coat photos, and gallery moments.',
+    bestFor: 'After-groom photos and cute finishes',
+    duration: 'Add 10 minutes',
+    price: 'Demo add-on',
+    icon: Sparkles,
+    image: images.portrait,
+    alt: 'Happy dog smiling for a photo-ready grooming finish',
   },
 ];
 

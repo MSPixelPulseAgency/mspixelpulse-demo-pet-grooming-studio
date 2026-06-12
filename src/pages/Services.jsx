@@ -16,7 +16,7 @@ export default function Services() {
       <PageHero
         eyebrow="Grooming Services"
         title="Rich service cards for a premium pet salon website."
-        text="Each card includes an image, icon, best-for detail, duration estimate, starting price, and booking cue for a high-end pet grooming demo."
+        text="Each card includes a pet-care image, icon, best-for detail, duration estimate, starting price, and booking cue for a high-end pet grooming demo."
       />
       <AnimatedSection className="section">
         <div className="section-inner">

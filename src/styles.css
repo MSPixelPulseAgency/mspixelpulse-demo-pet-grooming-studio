@@ -662,7 +662,6 @@ textarea {
 
 .price-card {
   position: relative;
-  padding: 24px;
   overflow: hidden;
 }
 
@@ -672,6 +671,31 @@ textarea {
   pointer-events: none;
   content: "";
   background: radial-gradient(circle at 100% 0, rgba(245, 200, 198, 0.42), transparent 28%);
+}
+
+.price-thumb {
+  position: relative;
+  height: 156px;
+  overflow: hidden;
+}
+
+.price-thumb::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  background: linear-gradient(180deg, transparent 42%, rgba(53, 40, 34, 0.35));
+}
+
+.price-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.price-card-body {
+  position: relative;
+  padding: 22px 24px 24px;
 }
 
 .price-card.featured {
@@ -692,7 +716,7 @@ textarea {
 .featured-badge {
   position: absolute;
   top: 22px;
-  right: 20px;
+  right: 24px;
   padding: 8px 11px;
   border-radius: 999px;
   color: var(--terracotta);
@@ -1223,19 +1247,43 @@ textarea:focus {
 @media (max-width: 680px) {
   .nav-wrap,
   .section-inner {
-    width: min(100% - 28px, 1160px);
+    width: min(100% - 32px, 1160px);
   }
 
   .hero,
   .section,
   .page-hero,
   .final-cta {
-    padding: 58px 0;
+    padding: 50px 0;
   }
 
   .hero-copy h1,
   .page-hero h1 {
-    font-size: 2.45rem;
+    font-size: clamp(2.15rem, 11vw, 2.85rem);
+    line-height: 1.03;
+  }
+
+  .section-heading h2,
+  .split h2,
+  .final-cta h2,
+  .featured-package h2 {
+    font-size: clamp(1.9rem, 9vw, 2.45rem);
+    line-height: 1.08;
+  }
+
+  .hero-copy > p:not(.eyebrow),
+  .page-hero p:not(.eyebrow),
+  .section-heading p {
+    font-size: 1rem;
+  }
+
+  .hero-grid,
+  .split,
+  .contact-grid,
+  .footer-grid,
+  .faq-page-grid,
+  .faq-preview-grid {
+    gap: 28px;
   }
 
   .hero-actions,
@@ -1244,16 +1292,56 @@ textarea:focus {
     width: 100%;
   }
 
-  .hero-media,
+  .hero {
+    overflow: hidden;
+    padding-bottom: 28px;
+  }
+
+  .hero-media {
+    min-height: 0;
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .hero-glass-panel {
+    grid-column: 1 / -1;
+    padding: 8px;
+    border-radius: 28px;
+  }
+
   .hero-media img {
-    min-height: 340px;
-    height: 340px;
+    min-height: 0;
+    height: clamp(280px, 78vw, 330px);
+    aspect-ratio: auto;
+    object-fit: cover;
+    border-radius: 22px;
+  }
+
+  .trust-strip {
+    padding: 18px 0;
+  }
+
+  .trust-grid {
+    gap: 12px;
+  }
+
+  .trust-grid span {
+    align-items: flex-start;
+    font-size: 0.98rem;
+    line-height: 1.35;
   }
 
   .floating-note {
-    position: relative;
-    inset: auto;
-    margin: 10px 8px 0 0;
+    position: static;
+    max-width: none;
+    min-height: 58px;
+    margin: 0;
+    padding: 12px 13px;
+    border-radius: 18px;
+    font-size: 0.94rem;
+    line-height: 1.2;
   }
 
   .note-one,
@@ -1263,6 +1351,10 @@ textarea:focus {
     left: auto;
     top: auto;
     bottom: auto;
+  }
+
+  .note-three {
+    grid-column: 1 / -1;
   }
 
   .trust-grid,
@@ -1283,8 +1375,44 @@ textarea:focus {
 
   .gallery-card,
   .gallery-card.tall {
-    min-height: 270px;
+    min-height: 245px;
     grid-row: auto;
+  }
+
+  .service-thumb,
+  .price-thumb {
+    height: auto;
+    aspect-ratio: 16 / 10;
+  }
+
+  .service-card-body,
+  .price-card-body {
+    padding: 18px;
+  }
+
+  .service-card h3,
+  .price-card h3,
+  .mini-card h3,
+  .addon-card h3,
+  .pet-type-card h3,
+  .process-step h3 {
+    font-size: 1.08rem;
+  }
+
+  .price-card strong,
+  .featured-package strong {
+    font-size: 1.52rem;
+  }
+
+  .price-card ul {
+    padding-left: 16px;
+  }
+
+  .price-marker,
+  .icon-chip {
+    width: 40px;
+    height: 40px;
+    border-radius: 14px;
   }
 
   .image-collage {
@@ -1296,7 +1424,8 @@ textarea:focus {
   .image-collage img {
     position: static;
     width: 100% !important;
-    height: 250px !important;
+    height: auto !important;
+    aspect-ratio: 4 / 3;
   }
 
   .contact-card {
@@ -1311,7 +1440,54 @@ textarea:focus {
     position: static;
     display: inline-flex;
     width: max-content;
-    margin-left: 8px;
+    max-width: 100%;
+    margin: 0 0 8px 8px;
+    white-space: normal;
+  }
+
+  .badges {
+    gap: 9px;
+  }
+
+  .badges span,
+  .pill-grid span,
+  .city-grid span,
+  .contact-badges span {
+    min-height: 36px;
+    padding: 7px 12px;
+    font-size: 0.88rem;
+    line-height: 1.2;
+  }
+
+  .pet-type-card,
+  .process-step,
+  .addon-card,
+  .comparison-card,
+  .mini-card,
+  .featured-package,
+  .glass-cta,
+  .contact-form {
+    border-radius: 22px;
+    padding: 18px;
+  }
+
+  .section-heading {
+    margin-bottom: 24px;
+  }
+
+  .faq-visual img,
+  .contact-visual > img {
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+
+  summary {
+    align-items: flex-start;
+    padding: 18px;
+  }
+
+  details p {
+    padding: 0 18px 18px 48px;
   }
 }
 

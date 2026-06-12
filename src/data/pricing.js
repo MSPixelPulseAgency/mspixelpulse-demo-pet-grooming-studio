@@ -5,6 +5,8 @@ export const pricing = [
     detail: 'Quick routine nail care.',
     included: 'Nail length tidy, gentle handling, paw check-in',
     bestFor: 'Maintenance visits',
+    image: 'https://images.unsplash.com/photo-1568572933382-74d440642117?auto=format&fit=crop&w=700&q=80',
+    alt: 'Dog paw held gently for nail trimming care',
   },
   {
     service: 'Bath & Brush',
@@ -12,6 +14,8 @@ export const pricing = [
     detail: 'Wash, dry, and coat refresh.',
     included: 'Shampoo, conditioner, blow dry, full brush-out',
     bestFor: 'Fresh coat resets',
+    image: 'https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=700&q=80',
+    alt: 'Dog enjoying a gentle bath and brush service',
   },
   {
     service: 'Small Dog Groom',
@@ -19,6 +23,8 @@ export const pricing = [
     detail: 'Full groom for smaller pets.',
     included: 'Bath, haircut, brush-out, ears, finishing touch',
     bestFor: 'Small dogs',
+    image: 'https://images.unsplash.com/photo-1591946614720-90a587da4a36?auto=format&fit=crop&w=700&q=80',
+    alt: 'Small dog with a fresh groomed coat',
   },
   {
     service: 'Medium Dog Groom',
@@ -27,6 +33,8 @@ export const pricing = [
     included: 'Bath, haircut, blow dry, brush-out, tidy finish',
     bestFor: 'Medium coats',
     featured: true,
+    image: 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=700&q=80',
+    alt: 'Happy dog smiling after grooming',
   },
   {
     service: 'Large Dog Groom',
@@ -34,6 +42,8 @@ export const pricing = [
     detail: 'Extra time for larger breeds.',
     included: 'Coat care, bath, dry, haircut or trim, tidy finish',
     bestFor: 'Large dogs',
+    image: 'https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&w=700&q=80',
+    alt: 'Clean dog coat after grooming for a large dog service',
   },
   {
     service: 'Cat Grooming',
@@ -41,6 +51,8 @@ export const pricing = [
     detail: 'Gentle feline grooming support.',
     included: 'Brush-out, mat care copy, sanitary trim options',
     bestFor: 'Cats and long coats',
+    image: 'https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&w=700&q=80',
+    alt: 'Calm cat portrait for cat grooming pricing',
   },
   {
     service: 'Puppy First Groom',
@@ -48,6 +60,8 @@ export const pricing = [
     detail: 'Comfort-first introduction.',
     included: 'Soft bath, gentle handling, light tidy, confidence-first pacing',
     bestFor: 'Puppies',
+    image: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=700&q=80',
+    alt: 'Clean puppy wrapped in a towel for puppy grooming',
   },
   {
     service: 'De-shedding Add-on',
@@ -55,6 +69,8 @@ export const pricing = [
     detail: 'Loose coat reduction support.',
     included: 'Extra brush-out time and seasonal coat care copy',
     bestFor: 'Double coats',
+    image: 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=700&q=80',
+    alt: 'Happy dogs with soft brushed coats for de-shedding',
   },
   {
     service: 'Teeth Brushing Add-on',
@@ -62,6 +78,8 @@ export const pricing = [
     detail: 'Breath-freshening add-on.',
     included: 'Fresh-finish add-on language for booking flows',
     bestFor: 'Add-on care',
+    image: 'https://images.unsplash.com/photo-1583512603805-3cc6b41f3edb?auto=format&fit=crop&w=700&q=80',
+    alt: 'Dog wrapped in a towel after a fresh grooming finish',
   },
   {
     service: 'Sanitary Trim',
@@ -69,6 +87,8 @@ export const pricing = [
     detail: 'Hygiene-focused trim.',
     included: 'Sensitive-area tidy with clear safety wording',
     bestFor: 'Long coats',
+    image: 'https://images.unsplash.com/photo-1601758124510-52d02ddb7cbd?auto=format&fit=crop&w=700&q=80',
+    alt: 'Clean pet care supplies for grooming add-on pricing',
   },
 ];
 

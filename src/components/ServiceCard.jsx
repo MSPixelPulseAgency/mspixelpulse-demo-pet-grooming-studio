@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export default function ServiceCard({ service }) {
   const Icon = service.icon;
 
@@ -30,6 +32,7 @@ export default function ServiceCard({ service }) {
             </div>
           </dl>
         )}
+        <Link className="text-link" to="/contact">Ask about this service</Link>
       </div>
     </article>
   );
