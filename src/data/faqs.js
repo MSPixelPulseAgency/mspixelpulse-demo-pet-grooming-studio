@@ -42,10 +42,10 @@ export const faqs = [
   {
     question: 'Is this a real grooming business?',
     answer:
-      'No. MS PixelPulse Pet Grooming Studio is a demo website template made for portfolio and client presentation purposes.',
+      'No. Stephy Pet Grooming is a demo website template made for portfolio and client presentation purposes.',
   },
   {
-    question: 'Can MSPixelPulse reuse this template for other pet businesses?',
+    question: 'Can this template be reused for other pet businesses?',
     answer:
       'Yes. The content and layout can be customized for pet salons, dog spas, cat grooming studios, mobile groomers, and pet care businesses.',
   },

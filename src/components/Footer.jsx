@@ -11,12 +11,12 @@ export default function Footer() {
               <PawPrint size={24} />
             </span>
             <span>
-              <strong>MS PixelPulse</strong>
-              <small>Pet Grooming Studio</small>
+              <strong>Stephy</strong>
+              <small>Pet Grooming</small>
             </span>
           </Link>
           <p>
-            A cute, premium, booking-ready pet grooming website Canada demo for salons, dog spas, cat groomers,
+            A glassy, premium, booking-ready pet grooming demo for Canadian salons, dog spas, cat groomers,
             and mobile pet care businesses.
           </p>
         </div>
@@ -24,7 +24,7 @@ export default function Footer() {
           <h2>Contact</h2>
           <p><MapPin size={17} /> Toronto, Ontario, Canada</p>
           <p><Phone size={17} /> +1 (000) 000-0000</p>
-          <p><Mail size={17} /> hello@mspixelpulse.com</p>
+          <p><Mail size={17} /> hello@stephypetgrooming.com</p>
         </div>
         <div>
           <h2>Demo Pages</h2>
@@ -35,7 +35,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="footer-bottom">
-        <p>Demo website by MSPixelPulseAgency. Not a real grooming business.</p>
+        <p>Stephy Pet Grooming is a demo website template. Not a real grooming business.</p>
       </div>
     </footer>
   );

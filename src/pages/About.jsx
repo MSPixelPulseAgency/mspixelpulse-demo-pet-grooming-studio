@@ -1,4 +1,5 @@
 import { Heart, LayoutTemplate, Map, PackageCheck, Search, Smartphone } from 'lucide-react';
+import AnimatedSection from '../components/AnimatedSection.jsx';
 import PageHero from '../components/PageHero.jsx';
 import SEO from '../components/SEO.jsx';
 import SectionHeading from '../components/SectionHeading.jsx';
@@ -16,35 +17,47 @@ export default function About() {
   return (
     <>
       <SEO
-        title="About | MS PixelPulse Pet Grooming Studio Demo"
-        description="Learn about this Canadian pet salon website demo for groomers who need services, pricing, reviews, gallery photos, and booking details."
+        title="About | Stephy Pet Grooming Demo"
+        description="Learn about Stephy Pet Grooming, a premium Canadian pet salon website demo for services, pricing, reviews, gallery photos, and booking details."
       />
       <PageHero
         eyebrow="About The Studio"
         title="A warm demo website made for pet groomers in Canada."
-        text="MS PixelPulse Pet Grooming Studio helps grooming businesses show services, pricing, reviews, gallery photos, and booking details in a professional way."
+        text="Stephy Pet Grooming helps grooming businesses show services, pricing, reviews, gallery photos, and booking details in a professional way."
       />
-      <section className="section">
-        <div className="section-inner split">
+      <AnimatedSection className="section">
+        <div className="section-inner split visual-split">
           <div>
             <p className="eyebrow">Built For Grooming Brands</p>
             <h2>Premium enough for trust, cute enough for pet care.</h2>
+            <p>
+              This demo is designed for Canadian pet salons, dog grooming website template projects, cat grooming
+              website template projects, and mobile pet grooming website presentations. It gives a realistic
+              portfolio site that can be adapted for real pet care businesses.
+            </p>
           </div>
-          <p>
-            This demo is designed for Canadian pet salons, dog grooming website template projects, cat grooming
-            website template projects, and mobile pet grooming website presentations. It gives MSPixelPulse a
-            realistic portfolio site that can be adapted for real pet care businesses.
-          </p>
+          <div className="image-collage">
+            <img
+              src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=900&q=80"
+              alt="Two happy dogs with clean groomed coats"
+              loading="lazy"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1601758124510-52d02ddb7cbd?auto=format&fit=crop&w=900&q=80"
+              alt="Pet care product detail for a clean grooming studio"
+              loading="lazy"
+            />
+          </div>
         </div>
-      </section>
-      <section className="section section-tint">
+      </AnimatedSection>
+      <AnimatedSection className="section section-tint">
         <div className="section-inner">
           <SectionHeading eyebrow="Website Value" title="Everything a local groomer needs to look organized online." />
           <div className="feature-grid">
             {values.map((value) => {
               const Icon = value.icon;
               return (
-                <article className="mini-card" key={value.title}>
+                <article className="mini-card glass-card" key={value.title}>
                   <span><Icon size={20} /></span>
                   <h3>{value.title}</h3>
                 </article>
@@ -52,7 +65,7 @@ export default function About() {
             })}
           </div>
         </div>
-      </section>
+      </AnimatedSection>
     </>
   );
 }

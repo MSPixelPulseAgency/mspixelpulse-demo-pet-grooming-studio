@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import AnimatedSection from '../components/AnimatedSection.jsx';
 import PageHero from '../components/PageHero.jsx';
 import SEO from '../components/SEO.jsx';
 import SectionHeading from '../components/SectionHeading.jsx';
@@ -9,22 +10,22 @@ export default function Services() {
   return (
     <>
       <SEO
-        title="Services | Dog, Cat, Puppy & Mobile Pet Grooming Website Demo"
-        description="Explore demo services for a Canadian pet grooming website, including dog grooming, cat grooming, puppy grooming, bath and brush, nails, de-shedding, and mobile grooming ready sections."
+        title="Services | Stephy Dog, Cat & Puppy Grooming Demo"
+        description="Explore image-led demo services for a Canadian pet grooming website, including dog grooming, cat grooming, puppy grooming, bath and brush, nails, de-shedding, and mobile grooming ready sections."
       />
       <PageHero
         eyebrow="Grooming Services"
-        title="Detailed service cards for a modern pet salon website."
-        text="Flexible copy for dog grooming, cat grooming, puppy care, de-shedding, add-ons, and mobile pet grooming website adaptations."
+        title="Rich service cards for a premium pet salon website."
+        text="Each card includes an image, icon, best-for detail, duration estimate, starting price, and booking cue for a high-end pet grooming demo."
       />
-      <section className="section">
+      <AnimatedSection className="section">
         <div className="section-inner">
           <div className="card-grid three">
             {services.map((service) => <ServiceCard key={service.title} service={service} />)}
           </div>
         </div>
-      </section>
-      <section className="section section-tint">
+      </AnimatedSection>
+      <AnimatedSection className="section section-tint">
         <div className="section-inner">
           <SectionHeading
             eyebrow="Pets Covered"
@@ -39,9 +40,9 @@ export default function Services() {
             temperament, and local business policy.
           </p>
         </div>
-      </section>
+      </AnimatedSection>
       <section className="final-cta">
-        <div className="section-inner final-cta-inner">
+        <div className="section-inner final-cta-inner glass-cta">
           <h2>Need this adapted for a mobile groomer or pet salon?</h2>
           <Link className="button" to="/contact">Book Grooming Demo</Link>
         </div>

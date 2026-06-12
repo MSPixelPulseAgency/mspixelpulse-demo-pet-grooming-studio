@@ -1,10 +1,10 @@
-# MS PixelPulse Pet Grooming Studio
+# Stephy Pet Grooming
 
 A full React + Vite demo website for a Canadian pet grooming business.
 
 ## Demo Details
 
-- Business: MS PixelPulse Pet Grooming Studio
+- Business: Stephy Pet Grooming
 - Location: Toronto, Ontario, Canada
 - Repo: `MSPixelPulseAgency/mspixelpulse-demo-pet-grooming-studio`
 - Vercel project: `mspixelpulse-demo-pet-grooming-studio`

@@ -23,8 +23,8 @@ export default function Header() {
             <PawPrint size={24} />
           </span>
           <span>
-            <strong>MS PixelPulse</strong>
-            <small>Pet Grooming Studio</small>
+            <strong>Stephy</strong>
+            <small>Pet Grooming</small>
           </span>
         </Link>
 
