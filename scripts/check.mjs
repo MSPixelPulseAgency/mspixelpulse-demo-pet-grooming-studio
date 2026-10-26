@@ -1,8 +1,9 @@
 import assert from "node:assert/strict";
 import { readFileSync, existsSync } from "node:fs";
-import { photos, videos } from "../src/data/media.js";
+import { heroVideo, photos, videos } from "../src/data/media.js";
 import { galleryItems } from "../src/data/gallery.js";
 const sources = [
+  ...Object.values(heroVideo),
   ...Object.values(photos).map((p) => p.src),
   ...Object.values(videos).flatMap((v) => [v.src, v.poster]),
   ...galleryItems.map((p) => p.src),
