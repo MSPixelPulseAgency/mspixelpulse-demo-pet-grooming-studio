@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Stephy local responsive QA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        margin: 0;
+        background: #d6ddd0;
+        color: #263f35;
+        font: 13px Arial;
+      }
+      header {
+        padding: 12px;
+        position: sticky;
+        top: 0;
+        background: #d6ddd0;
+        z-index: 10;
+      }
+      button,
+      select {
+        font: inherit;
+        min-height: 35px;
+        margin: 3px;
+        padding: 6px;
+      }
+      #stage {
+        overflow: hidden;
+      }
+      iframe {
+        display: block;
+        border: 0;
+        transform-origin: top left;
+        background: #f8f6ef;
+      }
+      pre {
+        white-space: pre-wrap;
+        font-size: 11px;
+        padding: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <label
+        >Width
+        <select id="width">
+          <option>320</option>
+          <option>375</option>
+          <option>430</option>
+          <option>768</option>
+          <option>1024</option>
+          <option selected>1440</option>
+          <option>1920</option>
+        </select></label
+      ><label
+        >Page
+        <select id="route">
+          <option>/</option>
+          <option>/about</option>
+          <option>/services</option>
+          <option>/gallery</option>
+          <option>/pricing</option>
+          <option>/faq</option>
+          <option>/contact</option>
+        </select></label
+      ><button id="show">Show viewport</button
+      ><button id="matrix">Check all 49 layouts</button
+      ><button id="accessibility">Check accessibility</button
+      ><span id="status" role="status">Ready</span>
+    </header>
+    <div id="stage">
+      <iframe id="frame" title="Responsive site preview" src="/"></iframe>
+    </div>
+    <pre id="report"></pre>
+    <script src="/node_modules/axe-core/axe.min.js"></script>
+    <script type="module">
+      const frame = document.querySelector("#frame"),
+        width = document.querySelector("#width"),
+        route = document.querySelector("#route"),
+        stage = document.querySelector("#stage");
+      function layout(w) {
+        const scale = Math.min(1, innerWidth / w);
+        frame.style.width = w + "px";
+        frame.style.height = "1050px";
+        frame.style.transform = `scale(${scale})`;
+        stage.style.height = 1050 * scale + "px";
+      }
+      function load(path) {
+        return new Promise((resolve) => {
+          frame.onload = () => setTimeout(resolve, 150);
+          frame.src = path;
+        });
+      }
+      function show() {
+        layout(Number(width.value));
+        frame.src = route.value;
+      }
+      document.querySelector("#show").onclick = show;
+      show();
+      document.querySelector("#matrix").onclick = async () => {
+        const results = [];
+        for (const path of [
+          "/",
+          "/about",
+          "/services",
+          "/gallery",
+          "/pricing",
+          "/faq",
+          "/contact",
+        ]) {
+          for (const w of [320, 375, 430, 768, 1024, 1440, 1920]) {
+            document.querySelector("#status").textContent =
+              `Checking ${path} at ${w}`;
+            layout(w);
+            await load(path);
+            const d = frame.contentDocument;
+            d.querySelectorAll("img").forEach((img) => (img.loading = "eager"));
+            await Promise.all(
+              [...d.images].map((img) => img.decode().catch(() => {})),
+            );
+            const wide = [...d.querySelectorAll("body *")]
+              .filter((e) => {
+                const c = frame.contentWindow.getComputedStyle(e);
+                if (
+                  c.visibility === "hidden" ||
+                  c.position === "absolute" ||
+                  c.position === "fixed"
+                )
+                  return false;
+                return e.getBoundingClientRect().right > w + 1;
+              })
+              .map((e) => e.tagName + "." + e.className)
+              .slice(0, 4);
+            results.push({
+              path,
+              width: w,
+              overflow: d.documentElement.scrollWidth > w,
+              h1: d.querySelectorAll("h1").length,
+              brokenImages: [...d.images].filter(
+                (i) => !i.complete || !i.naturalWidth,
+              ).length,
+              unlabelledImages: [...d.images].filter(
+                (i) => !i.hasAttribute("alt"),
+              ).length,
+              wide,
+            });
+          }
+        }
+        document.querySelector("#report").textContent = JSON.stringify(
+          results,
+          null,
+          2,
+        );
+        document.querySelector("#status").textContent =
+          `Complete: ${results.length} layouts; ${results.filter((r) => r.overflow || r.h1 !== 1 || r.brokenImages || r.unlabelledImages).length} failures`;
+        layout(Number(width.value));
+        await load(route.value);
+      };
+    </script>
+  </body>
+</html>
+<script>
+  document.querySelector("#accessibility").onclick = async () => {
+    const results = [];
+    const f = document.querySelector("#frame");
+    for (const route of [
+      "/",
+      "/about",
+      "/services",
+      "/gallery",
+      "/pricing",
+      "/faq",
+      "/contact",
+    ]) {
+      document.querySelector("#status").textContent = "Accessibility " + route;
+      await new Promise((resolve) => {
+        f.onload = () => setTimeout(resolve, 250);
+        f.src = route;
+      });
+      f.contentDocument
+        .querySelectorAll(".reveal")
+        .forEach((el) => el.classList.add("is-visible"));
+      await new Promise((resolve) => setTimeout(resolve, 750));
+      await new Promise((resolve) => {
+        const script = f.contentDocument.createElement("script");
+        script.src = "/node_modules/axe-core/axe.min.js";
+        script.onload = resolve;
+        f.contentDocument.head.appendChild(script);
+      });
+      const result = await f.contentWindow.axe.run({
+        runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21aa"] },
+      });
+      results.push({
+        route,
+        violations: result.violations.map((v) => ({
+          id: v.id,
+          impact: v.impact,
+          help: v.help,
+          nodes: v.nodes.map((n) => ({
+            target: n.target,
+            summary: n.failureSummary,
+          })),
+        })),
+        incomplete: result.incomplete.map((v) => v.id),
+        passes: result.passes.length,
+      });
+    }
+    document.querySelector("#report").textContent = JSON.stringify(
+      results,
+      null,
+      2,
+    );
+    document.querySelector("#status").textContent =
+      "Accessibility complete: " +
+      results.reduce((n, r) => n + r.violations.length, 0) +
+      " violations";
+  };
+</script>

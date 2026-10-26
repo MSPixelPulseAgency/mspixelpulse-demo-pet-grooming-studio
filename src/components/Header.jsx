@@ -1,45 +1,61 @@
-import { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import { Menu, PawPrint, X } from 'lucide-react';
-
-const navItems = [
-  { label: 'Home', to: '/' },
-  { label: 'About', to: '/about' },
-  { label: 'Services', to: '/services' },
-  { label: 'Gallery', to: '/gallery' },
-  { label: 'Pricing', to: '/pricing' },
-  { label: 'FAQ', to: '/faq' },
-  { label: 'Contact', to: '/contact' },
-];
-
+import { useEffect, useRef, useState } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import { ArrowUpRight, Menu, PawPrint, X } from "lucide-react";
+import { navItems } from "../data/site.js";
 export default function Header() {
   const [open, setOpen] = useState(false);
-
+  const toggle = useRef(null);
+  const location = useLocation();
+  useEffect(() => {
+    setOpen(false);
+  }, [location.pathname]);
   return (
     <header className="site-header">
-      <nav className="nav-wrap" aria-label="Main navigation">
-        <Link className="brand" to="/" onClick={() => setOpen(false)}>
-          <span className="brand-mark" aria-hidden="true">
-            <PawPrint size={24} />
+      <nav
+        className="nav-wrap"
+        aria-label="Main navigation"
+        onKeyDown={(event) => {
+          if (event.key === "Escape" && open) {
+            setOpen(false);
+            toggle.current?.focus();
+          }
+        }}
+      >
+        <Link className="brand" to="/" aria-label="Stephy Pet Grooming home">
+          <span className="brand-mark">
+            <PawPrint size={26} aria-hidden="true" />
           </span>
           <span>
-            <strong>Stephy</strong>
-            <small>Pet Grooming</small>
+            <strong>
+              stephy<span className="brand-dot">.</span>
+            </strong>
+            <small>PET GROOMING</small>
           </span>
         </Link>
-
-        <button className="nav-toggle" type="button" onClick={() => setOpen((value) => !value)} aria-label="Toggle menu">
-          {open ? <X size={22} /> : <Menu size={22} />}
+        <button
+          ref={toggle}
+          className="nav-toggle icon-button"
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          aria-controls="main-navigation"
+        >
+          {open ? <X /> : <Menu />}
         </button>
-
-        <div className={`nav-links ${open ? 'is-open' : ''}`}>
-          {navItems.map((item) => (
-            <NavLink key={item.to} to={item.to} onClick={() => setOpen(false)}>
-              {item.label}
-            </NavLink>
-          ))}
-          <Link className="button button-small" to="/contact" onClick={() => setOpen(false)}>
-            Book Now
+        <div
+          id="main-navigation"
+          className={`nav-links ${open ? "is-open" : ""}`}
+        >
+          {navItems
+            .filter((item) => item.to !== "/" && item.to !== "/contact")
+            .map((item) => (
+              <NavLink key={item.to} to={item.to}>
+                {item.label}
+              </NavLink>
+            ))}
+          <Link className="button button-small" to="/contact">
+            Appointment enquiry <ArrowUpRight size={16} />
           </Link>
         </div>
       </nav>

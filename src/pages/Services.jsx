@@ -1,52 +1,42 @@
-import { Link } from 'react-router-dom';
-import AnimatedSection from '../components/AnimatedSection.jsx';
-import PageHero from '../components/PageHero.jsx';
-import SEO from '../components/SEO.jsx';
-import SectionHeading from '../components/SectionHeading.jsx';
-import ServiceCard from '../components/ServiceCard.jsx';
-import { petsCovered, services } from '../data/services.js';
-
+import AnimatedSection from "../components/AnimatedSection.jsx";
+import PageHero from "../components/PageHero.jsx";
+import SEO from "../components/SEO.jsx";
+import ServiceCard from "../components/ServiceCard.jsx";
+import SmartSearch from "../components/SmartSearch.jsx";
+import ContactCTA from "../components/ContactCTA.jsx";
+import { services } from "../data/services.js";
 export default function Services() {
   return (
     <>
       <SEO
-        title="Services | Stephy Dog, Cat & Puppy Grooming Demo"
-        description="Explore image-led demo services for a Canadian pet grooming website, including dog grooming, cat grooming, puppy grooming, bath and brush, nails, de-shedding, and mobile grooming ready sections."
+        title="Grooming services | Dogs, cats & coat care | Stephy"
+        description="Explore Stephy’s illustrative menu of dog grooming, cat care, puppy introductions, bathing, brushing and finishing touches."
       />
       <PageHero
-        eyebrow="Grooming Services"
-        title="Rich service cards for a premium pet salon website."
-        text="Each card includes a pet-care image, icon, best-for detail, duration estimate, starting price, and booking cue for a high-end pet grooming demo."
+        eyebrow="THE GROOMING MENU"
+        title={
+          <>
+            A fresh start,
+            <br />
+            <em>from nose to tail.</em>
+          </>
+        }
+        text="Explore grooming, bath-time favourites and the little finishing touches. This is a concept menu; service availability, prices and timings are not yet confirmed."
       />
-      <AnimatedSection className="section">
+      <section className="section section-top-small">
         <div className="section-inner">
+          <div className="page-search">
+            <SmartSearch />
+          </div>
+          <h2 className="sr-only">Explore the service menu</h2>
           <div className="card-grid three">
-            {services.map((service) => <ServiceCard key={service.title} service={service} />)}
+            {services.map((s) => (
+              <ServiceCard key={s.id} service={s} />
+            ))}
           </div>
-        </div>
-      </AnimatedSection>
-      <AnimatedSection className="section section-tint">
-        <div className="section-inner">
-          <SectionHeading
-            eyebrow="Pets Covered"
-            title="A flexible service menu for many pet care businesses."
-            text="Service language can be adapted by breed, coat type, salon policy, and local business model."
-          />
-          <div className="pill-grid">
-            {petsCovered.map((pet) => <span key={pet}>{pet}</span>)}
-          </div>
-          <p className="notice">
-            Service availability, grooming duration, and pricing may vary by pet size, breed, coat condition,
-            temperament, and local business policy.
-          </p>
-        </div>
-      </AnimatedSection>
-      <section className="final-cta">
-        <div className="section-inner final-cta-inner glass-cta">
-          <h2>Need this adapted for a mobile groomer or pet salon?</h2>
-          <Link className="button" to="/contact">Book Grooming Demo</Link>
         </div>
       </section>
+      <ContactCTA />
     </>
   );
 }

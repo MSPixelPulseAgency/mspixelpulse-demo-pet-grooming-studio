@@ -1,0 +1,8 @@
+__qa.html
+.git
+node_modules
+docs
+.ai-agents
+README.md
+
+scripts/browser-qa.html

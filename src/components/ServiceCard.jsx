@@ -1,38 +1,25 @@
-import { Link } from 'react-router-dom';
-
+import { Link } from "react-router-dom";
+import { ArrowUpRight } from "lucide-react";
+import Photo from "./Photo.jsx";
 export default function ServiceCard({ service }) {
-  const Icon = service.icon;
-
   return (
-    <article className="glass-card service-card">
-      {service.image && (
-        <div className="service-thumb">
-          <img src={service.image} alt={service.alt} loading="lazy" />
-        </div>
-      )}
+    <article id={service.id} className="service-card glass-card">
+      <div className="service-thumb">
+        <Photo
+          photo={{ src: service.image, alt: service.alt }}
+          sizes="(max-width: 680px) 100vw, 33vw"
+        />
+        <span className="photo-number">{service.number}</span>
+      </div>
       <div className="service-card-body">
-        <span className="icon-chip" aria-hidden="true">
-          <Icon size={22} />
-        </span>
         <h3>{service.title}</h3>
         <p>{service.description}</p>
-        {service.bestFor && (
-          <dl className="service-meta">
-            <div>
-              <dt>Best for</dt>
-              <dd>{service.bestFor}</dd>
-            </div>
-            <div>
-              <dt>Duration</dt>
-              <dd>{service.duration}</dd>
-            </div>
-            <div>
-              <dt>Starts at</dt>
-              <dd>{service.price}</dd>
-            </div>
-          </dl>
-        )}
-        <Link className="text-link" to="/contact">Ask about this service</Link>
+        <Link
+          className="text-link"
+          to={`/contact?service=${encodeURIComponent(service.title)}`}
+        >
+          Enquire about this service <ArrowUpRight size={16} />
+        </Link>
       </div>
     </article>
   );
