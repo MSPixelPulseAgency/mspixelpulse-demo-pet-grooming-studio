@@ -50,3 +50,10 @@ export const videos = {
       "A woman brushes a fluffy white dog outdoors. Silent stock footage by Gustavo Fring.",
   },
 };
+
+// Same licensed Pexels 6131498 footage; short, silent background renditions.
+export const heroVideo = {
+  desktop: "/media/hero-grooming-1280.mp4",
+  mobile: "/media/hero-grooming-640.mp4",
+  poster: "/media/hero-grooming-poster.webp",
+};

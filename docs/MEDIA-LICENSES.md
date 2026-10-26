@@ -18,7 +18,7 @@ All nine original assets are free Pexels content, licensed for commercial and pe
 
 Photos: downloaded from the Pexels image CDN at 1200px, resized to 480px and 960px widths and encoded as WebP (quality 81). Responsive srcset chooses the appropriate size; CSS object-fit preserves proportions. No generative editing.
 
-Videos: official Pexels CDN renditions downloaded at 1280×720; trimmed to a maximum of 12 seconds (bathing is 9.88 seconds), resized to 960×540, H.264 CRF 28 with faststart, and all audio removed. Grooming and bathing use 25fps; brushing uses 30fps. Posters are frames at 1 second, encoded as WebP quality 82. All are served locally; video source URLs are only assigned following an explicit Play action. No remote players, analytics or runtime stock-CDN requests.
+Videos: official Pexels CDN renditions downloaded at 1280×720; trimmed to a maximum of 12 seconds (bathing is 9.88 seconds), resized to 960×540, H.264 CRF 28 with faststart, and all audio removed. Grooming and bathing use 25fps; brushing uses 30fps. Posters are frames at 1 second, encoded as WebP quality 82. All are served locally. Section-film source URLs are assigned following an explicit Play action. The separate decorative hero background described below may autoplay silently, as requested. No remote players, analytics or runtime stock-CDN requests.
 
 Original video CDN URLs:
 
@@ -26,4 +26,20 @@ Original video CDN URLs:
 - https://videos.pexels.com/video-files/6131723/6131723-hd_1280_720_25fps.mp4
 - https://videos.pexels.com/video-files/4267753/4267753-hd_1280_720_30fps.mp4
 
-The full local media directory is approximately 3.6 MiB, including all image variants and all three films. No genuine matching before/after photographs were supplied, so no comparison or transformation claim is displayed.
+The original local media set is approximately 3.6 MiB, including its image variants and three section films.
+
+## Hero background revision
+
+The hero background reuses Tima Miroshnichenko’s already licensed Pexels video 6131498 from the source table above. No new source or licensing claim is introduced. Additional files:
+
+- `hero-grooming-1280.mp4`: 1280×720, 24fps, 10 seconds, approximately 990 KiB.
+- `hero-grooming-640.mp4`: 640×360, 24fps, 10 seconds, approximately 334 KiB.
+- `hero-grooming-poster.webp`: a source frame at 1 second, 1280×720, approximately 45 KiB.
+
+Both MP4s use H.264 CRF 27, yuv420p and faststart, with audio physically removed. The page selects one rendition; it does not download both during normal playback or resizing. The hero uses muted inline autoplay and looping without native controls, keeps its poster if autoplay is blocked, pauses offscreen or in a hidden tab, and avoids video source assignment for reduced-motion, data-saver or 2G connections. A focus-revealed keyboard button can pause/resume background motion. The remaining section videos stay opt-in. No genuine matching before/after photographs were supplied, so no comparison or transformation claim is displayed.
+
+## Self-hosted typography
+
+DM Sans (variable weight, Latin) and DM Serif Display (regular and italic, Latin) are served as local WOFF2 files, approximately 95 KiB total. The normal heading and body fonts are preloaded; all faces use `font-display: swap`. There are no runtime Google Fonts requests.
+
+Both families are distributed under the SIL Open Font License 1.1. Unmodified notices are included in `public/fonts/DM-Sans-OFL.txt` and `public/fonts/DM-Serif-Display-OFL.txt`. Sources: [DM Sans](https://github.com/google/fonts/tree/main/ofl/dmsans), [DM Serif Display](https://github.com/google/fonts/tree/main/ofl/dmserifdisplay), with WOFF2 distributions from the official Google Fonts CSS API.

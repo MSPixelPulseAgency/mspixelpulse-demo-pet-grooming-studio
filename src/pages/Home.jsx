@@ -16,6 +16,7 @@ import ServiceCard from "../components/ServiceCard.jsx";
 import SmartSearch from "../components/SmartSearch.jsx";
 import Photo from "../components/Photo.jsx";
 import VideoPreview from "../components/VideoPreview.jsx";
+import HeroBackground from "../components/HeroBackground.jsx";
 import ContactCTA from "../components/ContactCTA.jsx";
 import { faqs } from "../data/faqs.js";
 import { serviceHighlights } from "../data/services.js";
@@ -28,7 +29,7 @@ export default function Home() {
         title="Stephy Pet Grooming | A little care. A lot of happy."
         description="Explore a thoughtful pet grooming concept: dog and cat care, coat maintenance, grooming packages and a little inspiration for happy tails."
       />
-      <section className="hero">
+      <section className="hero hero-with-video">
         <div className="section-inner hero-grid">
           <div className="hero-copy">
             <p className="eyebrow">
@@ -56,26 +57,21 @@ export default function Home() {
               A Stephy concept by MSPixelPulse. Demo enquiries only.
             </p>
           </div>
-          <div className="hero-visual">
-            <div className="portrait-frame">
-              <Photo
-                photo={photos.portrait}
-                priority
-                sizes="(max-width: 900px) 90vw, 45vw"
-              />
-            </div>
-            <span className="hero-stamp">
-              <PawPrint size={23} />
-              <span>
-                For the love
-                <br />
-                of little paws.
+          <div className="hero-visual hero-video-space">
+            <HeroBackground />
+            <div className="hero-visual-details">
+              <span className="hero-stamp">
+                <PawPrint size={23} aria-hidden="true" />
+                <span>
+                  For the love
+                  <br />
+                  of little paws.
+                </span>
               </span>
-            </span>
-            <div className="hero-film">
-              <VideoPreview video={videos.grooming} compact />
+              <p className="hero-video-caption">
+                Coat care, up close.<span>Licensed grooming footage</span>
+              </p>
             </div>
-            <span className="orbit-note">a fresh coat & a fresh start</span>
           </div>
           <div className="hero-discovery">
             <SmartSearch />
