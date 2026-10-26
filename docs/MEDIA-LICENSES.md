@@ -37,3 +37,9 @@ The hero background reuses Tima Miroshnichenko’s already licensed Pexels video
 - `hero-grooming-poster.webp`: a source frame at 1 second, 1280×720, approximately 45 KiB.
 
 Both MP4s use H.264 CRF 27, yuv420p and faststart, with audio physically removed. The page selects one rendition; it does not download both during normal playback or resizing. The hero uses muted inline autoplay and looping without native controls, keeps its poster if autoplay is blocked, pauses offscreen or in a hidden tab, and avoids video source assignment for reduced-motion, data-saver or 2G connections. A focus-revealed keyboard button can pause/resume background motion. The remaining section videos stay opt-in. No genuine matching before/after photographs were supplied, so no comparison or transformation claim is displayed.
+
+## Self-hosted typography
+
+DM Sans (variable weight, Latin) and DM Serif Display (regular and italic, Latin) are served as local WOFF2 files, approximately 95 KiB total. The normal heading and body fonts are preloaded; all faces use `font-display: swap`. There are no runtime Google Fonts requests.
+
+Both families are distributed under the SIL Open Font License 1.1. Unmodified notices are included in `public/fonts/DM-Sans-OFL.txt` and `public/fonts/DM-Serif-Display-OFL.txt`. Sources: [DM Sans](https://github.com/google/fonts/tree/main/ofl/dmsans), [DM Serif Display](https://github.com/google/fonts/tree/main/ofl/dmserifdisplay), with WOFF2 distributions from the official Google Fonts CSS API.

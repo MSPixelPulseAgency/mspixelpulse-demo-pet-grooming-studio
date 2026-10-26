@@ -134,6 +134,7 @@
             layout(w);
             await load(path);
             const d = frame.contentDocument;
+            await d.fonts.ready;
             d.querySelectorAll("img").forEach((img) => (img.loading = "eager"));
             await Promise.all(
               [...d.images].map((img) => img.decode().catch(() => {})),
@@ -151,8 +152,55 @@
               })
               .map((e) => e.tagName + "." + e.className)
               .slice(0, 4);
+            const typographyFailures = [
+              ...d.querySelectorAll("body *"),
+            ].flatMap((el) => {
+              if (
+                ["SCRIPT", "STYLE", "OPTION", "SVG"].includes(el.tagName) ||
+                el.closest('svg,[aria-hidden="true"],.sr-only') ||
+                !el.getClientRects().length ||
+                ![...el.childNodes].some(
+                  (n) => n.nodeType === 3 && n.textContent.trim(),
+                )
+              )
+                return [];
+              const c = frame.contentWindow.getComputedStyle(el);
+              if (c.visibility === "hidden" || c.display === "none") return [];
+              let minimum = 14;
+              if (
+                el.matches(
+                  ".button,.text-link,.mobile-enquiry,.filter-row button,summary",
+                )
+              )
+                minimum = 16;
+              if (el.matches(".nav-links > a:not(.button)"))
+                minimum = w > 1100 ? 17 : 16;
+              if (el.matches(".footer-links a")) minimum = w > 680 ? 17 : 16;
+              if (
+                el.matches("input,select,textarea,p,.page-intro") &&
+                !el.matches(
+                  ".eyebrow,.fine-print,.hero-disclosure,.social-note,.footer-contact-note,.form-helper,.search-hint,.gallery-count",
+                ) &&
+                !el.closest(".footer-bottom,.footer-location,.lightbox-bar")
+              )
+                minimum = w > 680 ? 17 : 16;
+              return parseFloat(c.fontSize) < minimum
+                ? [
+                    {
+                      text: el.textContent.trim().slice(0, 45),
+                      selector: el.tagName + "." + el.className,
+                      size: c.fontSize,
+                      minimum,
+                    },
+                  ]
+                : [];
+            });
             results.push({
               path,
+              typographyFailures,
+              fontsLoaded:
+                d.fonts.check('17px "DM Sans"') &&
+                d.fonts.check('32px "DM Serif Display"'),
               width: w,
               overflow: d.documentElement.scrollWidth > w,
               h1: d.querySelectorAll("h1").length,
@@ -182,7 +230,7 @@
           2,
         );
         document.querySelector("#status").textContent =
-          `Complete: ${results.length} layouts; ${results.filter((r) => r.overflow || r.h1 !== 1 || r.brokenImages || r.unlabelledImages || r.oversizedMobileHeading).length} failures`;
+          `Complete: ${results.length} layouts; ${results.filter((r) => r.overflow || r.h1 !== 1 || r.brokenImages || r.unlabelledImages || r.oversizedMobileHeading || r.typographyFailures.length || !r.fontsLoaded).length} failures`;
         layout(Number(width.value));
         await load(route.value);
       };

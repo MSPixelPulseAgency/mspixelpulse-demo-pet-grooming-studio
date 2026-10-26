@@ -19,7 +19,7 @@ export default function Header() {
         setOpen(false);
       }
     }
-    const desktop = matchMedia("(min-width: 901px)");
+    const desktop = matchMedia("(min-width: 1101px)");
     const resize = () => {
       if (desktop.matches) setOpen(false);
     };

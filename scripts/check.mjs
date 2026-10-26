@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFileSync, existsSync } from "node:fs";
+import { readFileSync, existsSync, statSync } from "node:fs";
 import { heroVideo, photos, videos } from "../src/data/media.js";
 import { galleryItems } from "../src/data/gallery.js";
 const sources = [
@@ -41,8 +41,29 @@ assert.ok(
   ),
   "Do not mix preview rehearsal and production submission",
 );
+const fontFiles = [
+  "dm-sans-latin-variable.woff2",
+  "dm-serif-display-latin-normal.woff2",
+  "dm-serif-display-latin-italic.woff2",
+];
+let fontBytes = 0;
+for (const font of fontFiles) {
+  const file = `dist/fonts/${font}`;
+  assert.ok(existsSync(file), `Missing self-hosted font: ${font}`);
+  assert.equal(readFileSync(file).subarray(0, 4).toString(), "wOF2");
+  fontBytes += statSync(file).size;
+}
+assert.ok(fontBytes < 100 * 1024, "Keep the complete font set below 100 KiB");
+for (const family of ["DM-Sans", "DM-Serif-Display"])
+  assert.ok(
+    readFileSync(`dist/fonts/${family}-OFL.txt`, "utf8").includes(
+      "SIL OPEN FONT LICENSE",
+    ),
+  );
+assert.ok(contactHTML.includes("/fonts/dm-sans-latin-variable.woff2"));
+assert.ok(contactHTML.includes("/fonts/dm-serif-display-latin-normal.woff2"));
 const headers = JSON.parse(readFileSync("vercel.json", "utf8"));
 assert.equal(headers.outputDirectory, "dist");
 console.log(
-  "Local media, responsive variants, rendered routes and deployment configuration verified.",
+  "Local media, fonts/licences, responsive variants, rendered routes and deployment configuration verified.",
 );
