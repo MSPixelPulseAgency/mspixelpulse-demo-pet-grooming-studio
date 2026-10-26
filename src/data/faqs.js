@@ -1,52 +1,62 @@
 export const faqs = [
   {
-    question: 'Do you groom both dogs and cats?',
+    id: "appointment",
+    question: "How do I enquire about an appointment?",
     answer:
-      'Yes. This demo website includes service content for dogs, cats, puppies, senior pets, and different coat types.',
+      "Use the enquiry form to share your pet’s details and the service you are interested in. This is a Stephy concept website: enquiries go to MSPixelPulse, and submitting the form does not book a grooming appointment.",
   },
   {
-    question: 'How long does grooming take?',
+    id: "services",
+    question: "Which grooming services can I explore?",
     answer:
-      'Most appointments vary by pet size, coat condition, temperament, and service type. A real salon should confirm timing during booking.',
+      "The service menu covers dog grooming, cat care, puppy introductions, bath and brush, nail care and coat maintenance. It is an illustrative menu; availability must be confirmed before a real business launch.",
   },
   {
-    question: 'Do prices change by pet size?',
+    id: "timing",
+    question: "How long would grooming take?",
     answer:
-      'Yes. Demo prices are shown as starting points only, and real pricing should be confirmed after reviewing each pet and service need.',
+      "Timing depends on the pet’s coat, size, service and handling needs. No appointment durations are confirmed here. Include relevant details in your enquiry so these can be discussed.",
   },
   {
-    question: 'Do you offer puppy grooming?',
+    id: "pricing",
+    question: "Where can I find pricing and packages?",
     answer:
-      'Yes. The Puppy First Groom section is designed for a gentle, confidence-building introduction to grooming.',
+      "The packages page explains different grooming options. Verified prices have not been supplied, so no quoted or starting prices are displayed.",
   },
   {
-    question: 'Can senior pets be groomed?',
+    id: "puppies",
+    question: "What about a puppy’s first groom?",
     answer:
-      'Yes. The template includes senior pet grooming copy with a calm, slow, comfort-first approach.',
+      "Puppy First Groom is included in the service menu as an introduction to grooming. Age requirements, vaccination requirements and the exact service need confirmation from the operating groomer.",
   },
   {
-    question: 'Do you offer nail trimming only?',
+    id: "senior-pets",
+    question: "Can I discuss a senior or nervous pet?",
     answer:
-      'Yes. Nail trimming is listed as a standalone demo service and can also be positioned as an add-on.',
+      "Yes. Include comfort, mobility or handling concerns in the enquiry. Suitability and any accommodations must be agreed with a groomer before arranging care.",
   },
   {
-    question: 'What should clients bring to an appointment?',
+    id: "nails",
+    question: "Can I ask about a nail trim on its own?",
     answer:
-      'A real business may ask for vaccination records, special care notes, leash or carrier, and any details about coat or handling needs.',
+      "Nail trimming appears in the service menu. Use the enquiry form to ask about it; standalone availability and pricing are not yet confirmed.",
   },
   {
-    question: 'Can this website be customized for mobile groomers?',
+    id: "preparation",
+    question: "What should I mention before a visit?",
     answer:
-      'Yes. The services and contact flow can be adapted for a mobile pet grooming website with service-area pages.',
+      "Useful details include your pet’s coat condition, previous grooming experience and any handling needs. An operating groomer should confirm what to bring and any policies before an appointment.",
   },
   {
-    question: 'Is this a real grooming business?',
+    id: "location",
+    question: "Where is the studio, and do you offer mobile grooming?",
     answer:
-      'No. Stephy Pet Grooming is a demo website template made for portfolio and client presentation purposes.',
+      "A studio address, opening hours, phone number and service area have not been verified. No physical location or mobile grooming coverage is claimed on this website.",
   },
   {
-    question: 'Can this template be reused for other pet businesses?',
+    id: "photography",
+    question: "Are the gallery photos real client transformations?",
     answer:
-      'Yes. The content and layout can be customized for pet salons, dog spas, cat grooming studios, mobile groomers, and pet care businesses.',
+      "The gallery uses licensed pet and grooming photography from Pexels. These images are visual inspiration, not Stephy clients, staff or results. There are no verified before-and-after pairs.",
   },
 ];

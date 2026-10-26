@@ -1,29 +1,33 @@
-import { useEffect, useRef, useState } from 'react';
-
-export default function AnimatedSection({ as: Tag = 'section', className = '', children }) {
+import { useEffect, useRef } from "react";
+export default function AnimatedSection({
+  as: Tag = "section",
+  className = "",
+  children,
+  id,
+}) {
   const ref = useRef(null);
-  const [visible, setVisible] = useState(false);
-
   useEffect(() => {
+    if (
+      matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      !("IntersectionObserver" in window)
+    )
+      return;
     const node = ref.current;
-    if (!node) return undefined;
-
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setVisible(true);
+          node.classList.add("is-visible");
           observer.disconnect();
         }
       },
-      { threshold: 0.16 }
+      { threshold: 0.05 },
     );
-
+    node.classList.add("reveal-ready");
     observer.observe(node);
     return () => observer.disconnect();
   }, []);
-
   return (
-    <Tag ref={ref} className={`${className} reveal ${visible ? 'is-visible' : ''}`}>
+    <Tag id={id} ref={ref} className={`${className} reveal`}>
       {children}
     </Tag>
   );

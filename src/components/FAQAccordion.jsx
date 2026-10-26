@@ -1,17 +1,16 @@
-import { PawPrint } from 'lucide-react';
-
+import { Plus } from "lucide-react";
 export default function FAQAccordion({ items, preview = false }) {
-  const faqs = preview ? items.slice(0, 4) : items;
-
   return (
-    <div className={`faq-list ${preview ? 'preview' : ''}`}>
-      {faqs.map((faq) => (
-        <details className="glass-card faq-item" key={faq.question}>
+    <div className="faq-list">
+      {(preview ? items.slice(0, 4) : items).map((faq) => (
+        <details id={faq.id} className="faq-item" key={faq.id}>
           <summary>
-            <PawPrint size={18} aria-hidden="true" />
             <span>{faq.question}</span>
+            <Plus size={20} aria-hidden="true" />
           </summary>
-          <p>{faq.answer}</p>
+          <div className="faq-answer">
+            <p>{faq.answer}</p>
+          </div>
         </details>
       ))}
     </div>
