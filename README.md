@@ -33,4 +33,6 @@ For manual browser QA, open `/scripts/browser-qa.html` on the Vite development s
 
 ## Release boundary
 
-This redesign is for PR review and Vercel Preview only. Do not merge or deploy production without a subsequent explicit request. Preserve the existing Vercel project, custom domain, environment variables and central enquiry integration.
+The owner explicitly approved merging PR #9 and deploying this Stephy release to production on October 26, 2026. That approval is scoped to this release and this repository. Future production changes require their own authorization. Preserve the Vercel project, custom domain, environment variables, backend allowlist and central enquiry integration.
+
+Vercel Preview builds use an explicitly labelled, local-only form rehearsal. Production builds retain the existing intake submission. The non-secret build-time VERCEL_ENV flag selects the behavior; no environment settings are changed. See [release validation and rollback procedure](docs/RELEASE-2026-10-26.md).

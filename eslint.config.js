@@ -14,6 +14,7 @@ export default [
     },
     plugins: { "react-hooks": reactHooks },
     rules: {
+      ...js.configs.recommended.rules,
       "no-unused-vars": [
         "error",
         { varsIgnorePattern: "^[A-Z_]", argsIgnorePattern: "^_" },

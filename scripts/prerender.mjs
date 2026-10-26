@@ -51,6 +51,11 @@ await build({
   format: "esm",
   packages: "external",
   jsx: "automatic",
+  define: {
+    "import.meta.env.STEPHY_PREVIEW": JSON.stringify(
+      process.env.VERCEL_ENV === "preview",
+    ),
+  },
 });
 const { render } = await import(pathToFileURL(output).href);
 const template = await readFile("dist/index.html", "utf8");

@@ -156,6 +156,16 @@
               width: w,
               overflow: d.documentElement.scrollWidth > w,
               h1: d.querySelectorAll("h1").length,
+              headingSize: parseFloat(
+                frame.contentWindow.getComputedStyle(d.querySelector("h1"))
+                  .fontSize,
+              ),
+              oversizedMobileHeading:
+                w <= 430 &&
+                parseFloat(
+                  frame.contentWindow.getComputedStyle(d.querySelector("h1"))
+                    .fontSize,
+                ) > 44,
               brokenImages: [...d.images].filter(
                 (i) => !i.complete || !i.naturalWidth,
               ).length,
@@ -172,7 +182,7 @@
           2,
         );
         document.querySelector("#status").textContent =
-          `Complete: ${results.length} layouts; ${results.filter((r) => r.overflow || r.h1 !== 1 || r.brokenImages || r.unlabelledImages).length} failures`;
+          `Complete: ${results.length} layouts; ${results.filter((r) => r.overflow || r.h1 !== 1 || r.brokenImages || r.unlabelledImages || r.oversizedMobileHeading).length} failures`;
         layout(Number(width.value));
         await load(route.value);
       };

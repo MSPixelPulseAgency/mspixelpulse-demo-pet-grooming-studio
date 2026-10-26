@@ -32,8 +32,11 @@ const trustBadges = [
   { title: "Your pet’s needs matter", icon: Heart },
 ];
 
-export default function Contact() {
+export default function Contact({
+  preview = import.meta.env?.STEPHY_PREVIEW === true,
+}) {
   const [status, setStatus] = useState("idle");
+  const [error, setError] = useState("");
   const pending = useRef(false);
   const confirmation = useRef(null);
   const [params] = useSearchParams();
@@ -60,6 +63,12 @@ export default function Contact() {
     const v = (key) => String(data.get(key) || "");
     setStatus("loading");
     setError("");
+    if (preview) {
+      setStatus("preview");
+      pending.current = false;
+      requestAnimationFrame(() => confirmation.current?.focus());
+      return;
+    }
     const result = await submitInquiry({
       formType: "booking",
       name: v("name"),
@@ -101,7 +110,11 @@ export default function Contact() {
             <em>A thoughtful next step.</em>
           </>
         }
-        text="Share what you have in mind. This concept website sends enquiries to MSPixelPulse; it cannot book a grooming appointment."
+        text={
+          preview
+            ? "Preview rehearsal: explore the form and its validation. Nothing entered here is sent, and no appointment is created."
+            : "Share what you have in mind. This concept website sends enquiries to MSPixelPulse; it cannot book a grooming appointment."
+        }
       />
       <AnimatedSection className="section">
         <div className="section-inner contact-grid">
@@ -111,8 +124,9 @@ export default function Contact() {
               <p className="eyebrow">BEFORE YOU SEND</p>
               <h2>A conversation, with care.</h2>
               <p>
-                Your enquiry is sent to MSPixelPulse, the agency behind this
-                concept.
+                {preview
+                  ? "This preview validates the form locally. It does not send enquiries to MSPixelPulse or store your details."
+                  : "Your enquiry is sent to MSPixelPulse, the agency behind this concept."}
               </p>
               <p>
                 Studio address, phone, hours, prices and appointment
@@ -131,17 +145,22 @@ export default function Contact() {
               })}
             </div>
           </div>
-          {status === "sent" ? (
+          {status === "sent" || status === "preview" ? (
             <div
               className="contact-form glass-card form-confirmation"
               role="status"
               ref={confirmation}
               tabIndex={-1}
             >
-              <h2>Request received</h2>
+              <h2>
+                {status === "preview"
+                  ? "Preview checked. Nothing was sent."
+                  : "Request received"}
+              </h2>
               <p>
-                Your enquiry was accepted by MSPixelPulse’s intake service. No
-                grooming appointment has been created.
+                {status === "preview"
+                  ? "The form passed its local validation. This was a preview rehearsal only: no enquiry was submitted, no details were stored and no appointment was created."
+                  : "Your enquiry was accepted by MSPixelPulse’s intake service. No grooming appointment has been created."}
               </p>
             </div>
           ) : (
@@ -279,7 +298,11 @@ export default function Contact() {
                   required
                   style={{ width: "auto", marginTop: "0.25rem" }}
                 />
-                <span>{CONSENT_LABEL}</span>
+                <span>
+                  {preview
+                    ? "I understand this preview does not send an enquiry or book an appointment."
+                    : CONSENT_LABEL}
+                </span>
               </label>
               {status === "error" && (
                 <p
@@ -291,15 +314,20 @@ export default function Contact() {
                 </p>
               )}
               <p className="form-helper full">
-                Demo website: your request is received by MSPixelPulse and
-                answered by email. No grooming appointment is booked.
+                {preview
+                  ? "Preview rehearsal only. This form does not send any data. Production uses the existing MSPixelPulse enquiry service."
+                  : "Demo website: your request is received by MSPixelPulse and answered by email. No grooming appointment is booked."}
               </p>
               <button
                 className="button full"
                 type="submit"
                 disabled={status === "loading"}
               >
-                {status === "loading" ? "Sending…" : "Send enquiry"}
+                {status === "loading"
+                  ? "Sending…"
+                  : preview
+                    ? "Check preview enquiry"
+                    : "Send enquiry"}
               </button>
             </form>
           )}

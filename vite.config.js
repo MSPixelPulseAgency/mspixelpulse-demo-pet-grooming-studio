@@ -5,6 +5,11 @@ const paths = new Set(
   navItems.map((item) => item.to).filter((path) => path !== "/"),
 );
 export default defineConfig({
+  define: {
+    "import.meta.env.STEPHY_PREVIEW": JSON.stringify(
+      process.env.VERCEL_ENV === "preview",
+    ),
+  },
   plugins: [
     react(),
     {

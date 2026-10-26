@@ -1,6 +1,6 @@
 # Stephy premium redesign — review report
 
-Date: October 26, 2026. Scope: the existing MSPixelPulseAgency/mspixelpulse-demo-pet-grooming-studio repository, based on main commit 40312d0. Production deployment and merge are deliberately excluded.
+Date: October 26, 2026. Scope: the existing MSPixelPulseAgency/mspixelpulse-demo-pet-grooming-studio repository, based on main commit 40312d0. This report records the initial review phase. The owner subsequently approved production release; see [the release report](RELEASE-2026-10-26.md) for the continuation and final release gates.
 
 ## What changed
 

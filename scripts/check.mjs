@@ -28,6 +28,18 @@ for (const route of [
     existsSync(`dist/${route}/index.html`),
     `Missing prerender ${route}`,
   );
+const contactHTML = readFileSync("dist/contact/index.html", "utf8");
+const previewBuild = process.env.VERCEL_ENV === "preview";
+assert.ok(
+  contactHTML.includes(previewBuild ? "Check preview enquiry" : "Send enquiry"),
+  "Enquiry behavior must match the deployment environment",
+);
+assert.ok(
+  !contactHTML.includes(
+    previewBuild ? ">Send enquiry<" : "Check preview enquiry",
+  ),
+  "Do not mix preview rehearsal and production submission",
+);
 const headers = JSON.parse(readFileSync("vercel.json", "utf8"));
 assert.equal(headers.outputDirectory, "dist");
 console.log(

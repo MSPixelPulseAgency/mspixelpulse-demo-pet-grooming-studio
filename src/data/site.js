@@ -15,3 +15,12 @@ export const navItems = [
   { label: "FAQs", to: "/faq" },
   { label: "Contact", to: "/contact" },
 ];
+
+// Populate only with owner-verified salon contact records and social profiles.
+export const businessContact = {
+  email: null,
+  phone: null,
+  location: null,
+  hours: null,
+};
+export const socialProfiles = [];

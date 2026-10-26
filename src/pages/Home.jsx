@@ -55,18 +55,6 @@ export default function Home() {
             <p className="hero-disclosure">
               A Stephy concept by MSPixelPulse. Demo enquiries only.
             </p>
-            <SmartSearch />
-            <div className="hero-tags">
-              <span>
-                <PawPrint size={15} /> Dogs & cats
-              </span>
-              <span>
-                <Heart size={15} /> Care comes first
-              </span>
-              <span>
-                <Sparkles size={15} /> Every coat, considered
-              </span>
-            </div>
           </div>
           <div className="hero-visual">
             <div className="portrait-frame">
@@ -88,6 +76,20 @@ export default function Home() {
               <VideoPreview video={videos.grooming} compact />
             </div>
             <span className="orbit-note">a fresh coat & a fresh start</span>
+          </div>
+          <div className="hero-discovery">
+            <SmartSearch />
+            <div className="hero-tags">
+              <span>
+                <PawPrint size={15} /> Dogs & cats
+              </span>
+              <span>
+                <Heart size={15} /> Care comes first
+              </span>
+              <span>
+                <Sparkles size={15} /> Every coat, considered
+              </span>
+            </div>
           </div>
         </div>
       </section>
