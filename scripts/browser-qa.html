@@ -79,6 +79,25 @@
         width = document.querySelector("#width"),
         route = document.querySelector("#route"),
         stage = document.querySelector("#stage");
+      // Never assign a DOM-supplied URL to the iframe: select only fixed local routes.
+      function allowedRoute(value) {
+        switch (value) {
+          case "/about":
+            return "/about";
+          case "/services":
+            return "/services";
+          case "/gallery":
+            return "/gallery";
+          case "/pricing":
+            return "/pricing";
+          case "/faq":
+            return "/faq";
+          case "/contact":
+            return "/contact";
+          default:
+            return "/";
+        }
+      }
       function layout(w) {
         const scale = Math.min(1, innerWidth / w);
         frame.style.width = w + "px";
@@ -89,12 +108,12 @@
       function load(path) {
         return new Promise((resolve) => {
           frame.onload = () => setTimeout(resolve, 150);
-          frame.src = path;
+          frame.src = allowedRoute(path);
         });
       }
       function show() {
         layout(Number(width.value));
-        frame.src = route.value;
+        frame.src = allowedRoute(route.value);
       }
       document.querySelector("#show").onclick = show;
       show();
